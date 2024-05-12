@@ -1,6 +1,7 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui"
         xmlns:forms="clr-namespace:AvaloniaForms.Controls;assembly=AvaloniaForms"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="AvaloniaForms.Themes.EllipsisButton">
   <Style Selector="forms|AppBarButton" >
     <Setter Property="Width"
             Value="72" />

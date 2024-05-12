@@ -46,7 +46,7 @@ namespace Xamarin.Forms.Platform.Avalonia
             {
                 var baseUri = new Uri(string.Format("avares://{0}/{1}.xaml", Assembly.GetEntryAssembly().GetName().Name, global::Avalonia.Application.Current.GetType().Name));
                 var sourceUri = new Uri(string.Format("resm:{1}.DefaultTheme.xaml?assembly={0}", typeof(DefaultTheme).Assembly.GetName().Name, typeof(DefaultTheme).Namespace));
-                global::Avalonia.Application.Current.Styles.Add(new StyleInclude(baseUri) { Source = sourceUri });
+                //global::Avalonia.Application.Current.Styles.Add(new StyleInclude(baseUri) { Source = sourceUri });
                 DefaultThemeIncluded = true;
             }
         }
