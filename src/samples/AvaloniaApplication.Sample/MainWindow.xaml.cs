@@ -11,7 +11,7 @@ namespace AvaloniaApplication.Sample
         {
             InitializeComponent();
 #if DEBUG
-            this.AttachDevTools();
+            //this.AttachDevTools();
 #endif
 
             Xamarin.Forms.Forms.SetFlags("IndicatorView_Experimental");
