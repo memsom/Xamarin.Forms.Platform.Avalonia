@@ -47,9 +47,9 @@ namespace AvaloniaForms.Controls
             SetValue(MultiContentPage.ItemsSourceProperty, new ObservableCollection<object>());
         }
 
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
 
             ContentControl = e.NameScope.Find<TransitioningContentControl>("PART_Multi_Content");
         }

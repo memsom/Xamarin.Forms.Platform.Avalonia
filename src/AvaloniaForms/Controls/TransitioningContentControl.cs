@@ -107,14 +107,14 @@ namespace AvaloniaForms.Controls
         }
 
 
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
             if (this.IsTransitioning)
             {
                 this.AbortTransition();
             }
 
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
 
             this.previousContentPresentationSite = e.NameScope.Find<ContentPresenter>(PreviousContentPresentationSitePartName);
             this.currentContentPresentationSite = e.NameScope.Find<ContentPresenter>(CurrentContentPresentationSitePartName);

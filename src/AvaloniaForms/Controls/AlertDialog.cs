@@ -10,9 +10,9 @@ namespace AvaloniaForms.Controls
     {
 		public ScrollBarVisibility VerticalScrollBarVisibility { get; set; }
 
-		protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+		protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
 		{
-			base.OnTemplateApplied(e);
+			base.OnApplyTemplate(e);
 
 			var scrollName = "ContentScrollViewer";
 			if (e.NameScope.Find(scrollName) is ScrollViewer contentScrollViewer)

@@ -31,9 +31,9 @@ namespace AvaloniaForms.Controls
             }
         }
 
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
 
             NextButton = e.NameScope.Find<RepeatButton>("PART_NextButton");
             NextButton.Click += NextButton_Click;

@@ -158,9 +158,9 @@ namespace AvaloniaForms.Controls
         }
         #endregion
 
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
 
             this.PrimaryButton = e.NameScope.Find<Button>("PART_PrimaryButton");
             this.PrimaryButton.Click += OnPrimaryButtonClick;

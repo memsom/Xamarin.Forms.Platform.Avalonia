@@ -35,9 +35,9 @@ namespace AvaloniaForms.Controls
 		
 		ContentPresenter _contentPresenter;
 
-		protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+		protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
 		{
-			base.OnTemplateApplied(e);
+			base.OnApplyTemplate(e);
 			_contentPresenter = VisualChildren.OfType<ContentPresenter>().FirstOrDefault();
 			UpdateCornerRadius();
 		}

@@ -74,9 +74,9 @@ namespace AvaloniaForms.Controls
             }
         }
 
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
 
             MasterContentControl = e.NameScope.Find<DynamicContentControl>("PART_Master");
             DetailContentControl = e.NameScope.Find<DynamicContentControl>("PART_Detail_Content");

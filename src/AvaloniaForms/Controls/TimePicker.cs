@@ -38,9 +38,9 @@ namespace AvaloniaForms.Controls
         public event TimeChangedEventHandler TimeChanged;
 
 
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
             SetText();
         }
 

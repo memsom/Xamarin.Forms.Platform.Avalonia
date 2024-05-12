@@ -176,9 +176,9 @@ namespace AvaloniaForms.Controls
         {
         }
 
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
 
             topAppBar = e.NameScope.Find<CommandBar>("PART_TopAppBar");
             bottomAppBar = e.NameScope.Find<CommandBar>("PART_BottomAppBar");

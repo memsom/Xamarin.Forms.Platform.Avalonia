@@ -61,9 +61,9 @@ namespace AvaloniaForms.Controls
 			UpdateVisibility();
 		}
 
-		protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+		protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
 		{
-			base.OnTemplateApplied(e);
+			base.OnApplyTemplate(e);
 
 			_moreButton = e.NameScope.Find<Button>("MoreButton");
 			_primaryItemsControl = e.NameScope.Find<ItemsControl>("PrimaryItemsControl");
@@ -71,6 +71,7 @@ namespace AvaloniaForms.Controls
 
 		public void Reset()
 		{
+			// this was here - not sure wht yet
 		}
 
 		void UpdateVisibility()
