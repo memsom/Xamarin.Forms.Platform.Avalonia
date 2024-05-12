@@ -175,15 +175,14 @@ namespace AvaloniaForms.Controls
 		}
 		#endregion
 
-		protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs e)
+		protected override void OnPropertyChanged<T>(AvaloniaPropertyChangedEventArgs<T> change)
 		{
-			base.OnPropertyChanged(e);
-			if (e.Property == TitleProperty || e.Property == HasBackButtonProperty || e.Property == HasNavigationBarProperty || e.Property == TitleBarBackgroundColorProperty || e.Property == TitleBarTextColorProperty)
+			base.OnPropertyChanged(change);
+			if (change.Property == TitleProperty || change.Property == HasBackButtonProperty || change.Property == HasNavigationBarProperty || change.Property == TitleBarBackgroundColorProperty || change.Property == TitleBarTextColorProperty)
 			{
 				ParentWindow?.SynchronizeAppBar();
 			}
 		}
-
 
 		private void Commands_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
 		{

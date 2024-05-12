@@ -22,12 +22,12 @@ namespace AvaloniaForms.Controls
         {
         }
 
-        protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs e)
+        protected override void OnPropertyChanged<T>(AvaloniaPropertyChangedEventArgs<T> change)
         {
-            base.OnPropertyChanged(e);
-            if (e.Property == SelectedIndexProperty)
+            base.OnPropertyChanged(change);
+            if (change.Property == SelectedIndexProperty)
             {
-                OnSelectedIndexChanged(e);
+                OnSelectedIndexChanged(change);
             }
         }
 

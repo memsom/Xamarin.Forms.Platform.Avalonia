@@ -37,7 +37,6 @@ namespace AvaloniaForms
 				return content;
 			}
 
-			var loader = new AvaloniaXamlLoader();
 			var uri = content as Uri;
 			if (content is string)
 			{
@@ -45,7 +44,7 @@ namespace AvaloniaForms
 			}
 			if (uri != null)
 			{
-				return loader.Load(uri);
+				return AvaloniaXamlLoader.Load(uri);
 			}
 			return null;
 		}

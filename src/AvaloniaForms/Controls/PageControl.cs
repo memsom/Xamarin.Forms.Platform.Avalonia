@@ -1,4 +1,6 @@
-﻿using Avalonia;
+﻿using System;
+using System.Threading.Tasks;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
@@ -6,14 +8,10 @@ using Avalonia.Interactivity;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Styling;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AvaloniaForms.Controls
 {
-    public partial class PageControl : ContentControl, IToolbarProvider, ITitleViewRendererController, IStyleable
+    public class PageControl : ContentControl, IToolbarProvider, ITitleViewRendererController, IStyleable
     {
         public static readonly StyledProperty<bool> TitleVisibilityProperty = AvaloniaProperty.Register<PageControl, bool>(nameof(TitleVisibility));
         public static readonly StyledProperty<Brush> ToolbarBackgroundProperty = AvaloniaProperty.Register<PageControl, Brush>(nameof(ToolbarBackground));
@@ -43,20 +41,20 @@ namespace AvaloniaForms.Controls
 
         public bool ShouldShowToolbar
         {
-            get { return _toolbarPlacementHelper.ShouldShowToolBar; }
-            set { _toolbarPlacementHelper.ShouldShowToolBar = value; }
+            get => _toolbarPlacementHelper.ShouldShowToolBar;
+            set => _toolbarPlacementHelper.ShouldShowToolBar = value;
         }
 
         public Bitmap TitleIcon
         {
-            get { return GetValue(TitleIconProperty); }
-            set { SetValue(TitleIconProperty, value); }
+            get => GetValue(TitleIconProperty);
+            set => SetValue(TitleIconProperty, value);
         }
 
         public object TitleViewContent
         {
-            get { return GetValue(TitleViewContentProperty); }
-            set { SetValue(TitleViewContentProperty, value); }
+            get => GetValue(TitleViewContentProperty);
+            set => SetValue(TitleViewContentProperty, value);
         }
 
         TaskCompletionSource<CommandBar> _commandBarTcs;
@@ -110,35 +108,29 @@ namespace AvaloniaForms.Controls
 
         public string BackButtonTitle
         {
-            get { return (string)GetValue(BackButtonTitleProperty); }
-            set { SetValue(BackButtonTitleProperty, value); }
+            get => GetValue(BackButtonTitleProperty);
+            set => SetValue(BackButtonTitleProperty, value);
         }
 
-        public double ContentHeight
-        {
-            get { return _presenter != null ? _presenter.Height : 0; }
-        }
+        public double ContentHeight => _presenter != null ? _presenter.Height : 0;
 
         public Thickness ContentMargin
         {
-            get { return GetValue(ContentMarginProperty); }
-            set { SetValue(ContentMarginProperty, value); }
+            get => GetValue(ContentMarginProperty);
+            set => SetValue(ContentMarginProperty, value);
         }
 
-        public double ContentWidth
-        {
-            get { return _presenter != null ? _presenter.Width : 0; }
-        }
+        public double ContentWidth => _presenter != null ? _presenter.Width : 0;
 
         public Brush ToolbarBackground
         {
-            get { return (Brush)GetValue(ToolbarBackgroundProperty); }
-            set { SetValue(ToolbarBackgroundProperty, value); }
+            get => GetValue(ToolbarBackgroundProperty);
+            set => SetValue(ToolbarBackgroundProperty, value);
         }
 
         public ToolbarPlacement ToolbarPlacement
         {
-            get { return _toolbarPlacement; }
+            get => _toolbarPlacement;
             set
             {
                 _toolbarPlacement = value;
@@ -148,7 +140,7 @@ namespace AvaloniaForms.Controls
 
         public bool ToolbarDynamicOverflowEnabled
         {
-            get { return _toolbarDynamicOverflowEnabled; }
+            get => _toolbarDynamicOverflowEnabled;
             set
             {
                 _toolbarDynamicOverflowEnabled = value;
@@ -158,31 +150,31 @@ namespace AvaloniaForms.Controls
 
         public bool TitleVisibility
         {
-            get { return GetValue(TitleVisibilityProperty); }
-            set { SetValue(TitleVisibilityProperty, value); }
+            get => GetValue(TitleVisibilityProperty);
+            set => SetValue(TitleVisibilityProperty, value);
         }
 
         public bool TitleViewVisibility
         {
-            get { return GetValue(TitleViewVisibilityProperty); }
-            set { SetValue(TitleViewVisibilityProperty, value); }
+            get => GetValue(TitleViewVisibilityProperty);
+            set => SetValue(TitleViewVisibilityProperty, value);
         }
 
         public Brush TitleBrush
         {
-            get { return (Brush)GetValue(TitleBrushProperty); }
-            set { SetValue(TitleBrushProperty, value); }
+            get => GetValue(TitleBrushProperty);
+            set => SetValue(TitleBrushProperty, value);
         }
 
         public double TitleInset
         {
-            get { return (double)GetValue(TitleInsetProperty); }
-            set { SetValue(TitleInsetProperty, value); }
+            get => GetValue(TitleInsetProperty);
+            set => SetValue(TitleInsetProperty, value);
         }
 
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
 
             _presenter = e.NameScope.Find<ContentPresenter>("presenter");
 
