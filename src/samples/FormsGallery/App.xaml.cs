@@ -10,7 +10,7 @@ namespace FormsGallery
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new HomePage());
+            MainPage = new BasicPage(); // new NavigationPage(new HomePage());
         }
 
         protected override void OnStart()
