@@ -43,8 +43,8 @@ namespace AvaloniaForms.Controls
         }
 
         #region Loaded & Unloaded
-        public event EventHandler<RoutedEventArgs> Loaded;
-        public event EventHandler<RoutedEventArgs> Unloaded;
+        //public event EventHandler<RoutedEventArgs> Loaded;
+        //public event EventHandler<RoutedEventArgs> Unloaded;
 
         protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
         {
@@ -58,8 +58,8 @@ namespace AvaloniaForms.Controls
             Disappearing();
         }
 
-        protected virtual void OnLoaded(RoutedEventArgs e) { Loaded?.Invoke(this, e); }
-        protected virtual void OnUnloaded(RoutedEventArgs e) { Unloaded?.Invoke(this, e); }
+        //protected virtual void OnLoaded(RoutedEventArgs e) { Loaded?.Invoke(this, e); }
+        //protected virtual void OnUnloaded(RoutedEventArgs e) { Unloaded?.Invoke(this, e); }
         #endregion
 
         #region Appearing & Disappearing
@@ -73,12 +73,12 @@ namespace AvaloniaForms.Controls
         #endregion
 
         #region LayoutUpdated & SizeChanged
-        public event EventHandler<EventArgs> SizeChanged;
-        protected virtual void OnSizeChanged(EventArgs e) { SizeChanged?.Invoke(this, e); }
+        //public event EventHandler<EventArgs> SizeChanged;
+        //protected virtual void OnSizeChanged(EventArgs e) { SizeChanged?.Invoke(this, e); }
 
         protected virtual void OnLayoutUpdated(object sender, EventArgs e)
         {
-            OnSizeChanged(e);
+            OnSizeChanged(new SizeChangedEventArgs(null)); // this is probably not right
 
             ContentLoader.OnSizeContentChanged(this, Source);
         }
@@ -117,7 +117,7 @@ namespace AvaloniaForms.Controls
                     }
                     else
                     {
-                        if (t.Result is IControl control)
+                        if (t.Result is Control control)
                         {
                             if (control.Parent != null)
                             {

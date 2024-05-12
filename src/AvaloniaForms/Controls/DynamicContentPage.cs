@@ -126,8 +126,8 @@ namespace AvaloniaForms.Controls
 		}
 
 		#region Loaded & Unloaded
-		public event EventHandler<RoutedEventArgs> Loaded;
-		public event EventHandler<RoutedEventArgs> Unloaded;
+		//public event EventHandler<RoutedEventArgs> Loaded;
+		//public event EventHandler<RoutedEventArgs> Unloaded;
 
 		protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
 		{
@@ -141,8 +141,8 @@ namespace AvaloniaForms.Controls
 			Disappearing();
 		}
 
-		protected virtual void OnLoaded(RoutedEventArgs e) { Loaded?.Invoke(this, e); }
-		protected virtual void OnUnloaded(RoutedEventArgs e) { Unloaded?.Invoke(this, e); }
+		//protected virtual void OnLoaded(RoutedEventArgs e) { Loaded?.Invoke(this, e); }
+		//protected virtual void OnUnloaded(RoutedEventArgs e) { Unloaded?.Invoke(this, e); }
 		#endregion
 
 		#region Appearing & Disappearing
@@ -166,16 +166,16 @@ namespace AvaloniaForms.Controls
 		#endregion
 
 		#region LayoutUpdated & SizeChanged
-		public event EventHandler<EventArgs> SizeChanged;
-		protected virtual void OnSizeChanged(EventArgs e) { SizeChanged?.Invoke(this, e); }
+		//public event EventHandler<EventArgs> SizeChanged;
+		//protected virtual void OnSizeChanged(EventArgs e) { SizeChanged?.Invoke(this, e); }
 
 		protected virtual void OnLayoutUpdated(object sender, EventArgs e)
 		{
-			OnSizeChanged(e);
+			OnSizeChanged(new SizeChangedEventArgs(null)); // this is probably wrong
 		}
 		#endregion
 
-		protected override void OnPropertyChanged<T>(AvaloniaPropertyChangedEventArgs<T> change)
+		protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
 		{
 			base.OnPropertyChanged(change);
 			if (change.Property == TitleProperty || change.Property == HasBackButtonProperty || change.Property == HasNavigationBarProperty || change.Property == TitleBarBackgroundColorProperty || change.Property == TitleBarTextColorProperty)

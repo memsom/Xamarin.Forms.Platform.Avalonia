@@ -9,20 +9,20 @@ using System.Text;
 
 namespace AvaloniaForms.Controls.Generators
 {
-    public class ListViewItemContainerGenerator<T> : ItemContainerGenerator<T> where T : class, IControl, new()
+    public class ListViewItemContainerGenerator<T> : ItemContainerGenerator where T : Control, new()
     {
         /// <summary>
         /// Gets the container's ContentTemplate property.
         /// </summary>
         protected AvaloniaProperty DataTemplateSelectorProperty { get; }
 
-        public ListViewItemContainerGenerator(IControl owner, AvaloniaProperty contentProperty, AvaloniaProperty contentTemplateProperty, AvaloniaProperty dataTemplateSelectorProperty)
+        public ListViewItemContainerGenerator(Control owner, AvaloniaProperty contentProperty, AvaloniaProperty contentTemplateProperty, AvaloniaProperty dataTemplateSelectorProperty)
             : base(owner, contentProperty, contentTemplateProperty)
         {
             DataTemplateSelectorProperty = dataTemplateSelectorProperty;
         }
 
-        protected override IControl CreateContainer(object item)
+        protected override Control CreateContainer(object item)
         {
             var result = base.CreateContainer(item);
             var listViewItem = result as T;

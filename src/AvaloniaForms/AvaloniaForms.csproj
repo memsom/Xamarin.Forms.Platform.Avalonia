@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>10</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -23,6 +24,9 @@
     <AvaloniaResource Include="**\*.xaml">
       <SubType>Designer</SubType>
     </AvaloniaResource>
+    <Compile Remove="Controls\Generators\ListViewItemContainerGenerator.cs" />
+    <Compile Remove="Controls\Generators\**" />
+    <AvaloniaResource Remove="Controls\Generators\**" />
   </ItemGroup>
   <ItemGroup>
     <AvaloniaResource Remove="Themes\AppBarButton.xaml" />
@@ -59,10 +63,14 @@
     <None Remove="Themes\TabbedPage.xaml" />
     <None Remove="Themes\TransitioningContentControl.xaml" />
     <None Remove="Themes\WindowButtons.xaml" />
+    <None Remove="Controls\Generators\**" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="0.10.0" />
-    <PackageReference Include="ReactiveUI" Version="11.1.23" />
+    <PackageReference Include="Avalonia" Version="11.0.10" />
+    <PackageReference Include="Avalonia.Controls.ItemsRepeater" Version="11.0.10" />
+    <PackageReference Include="Avalonia.Themes.Simple" Version="11.0.10" />
+    <PackageReference Include="System.Reactive" Version="6.0.0" />
+    <PackageReference Include="ReactiveUI" Version="20.0.1" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Themes\EllipsisButton.xaml">
@@ -125,11 +133,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Remove="Controls\Generators\**" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Themes\DefaultTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AvaloniaXaml Remove="Controls\Generators\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <AdditionalFiles Remove="Controls\Generators\**" />
   </ItemGroup>
 </Project>

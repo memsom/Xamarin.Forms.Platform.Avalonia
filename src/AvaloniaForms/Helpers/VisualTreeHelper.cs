@@ -16,9 +16,9 @@ namespace AvaloniaForms
     /// </summary>
     public static class VisualTreeHelper
     {
-        public static IAvaloniaReadOnlyList<IVisual> GetVisualChildren(IVisual parent)
+        public static IAvaloniaReadOnlyList<Visual> GetVisualChildren(Visual parent)
         {
-            return parent.VisualChildren;
+            return new AvaloniaList<Visual>(parent.GetVisualChildren());
         }
 
         /// <summary>
@@ -30,8 +30,8 @@ namespace AvaloniaForms
         /// <returns>The first parent item that matches the submitted
         /// type parameter. If not matching item can be found, a null
         /// reference is being returned.</returns>
-        public static T TryFindParent<T>(this IVisual child)
-            where T : class, IVisual
+        public static T TryFindParent<T>(this Visual child)
+            where T : Visual
         {
             //get parent item
             var parentObject = GetParentObject(child);
@@ -53,8 +53,8 @@ namespace AvaloniaForms
         /// <returns>The first parent item that matches the submitted type parameter. 
         /// If not matching item can be found, 
         /// a null parent is being returned.</returns>
-        public static T FindChild<T>(this IVisual parent, string childName)
-           where T : class, IVisual
+        public static T FindChild<T>(this Visual parent, string childName)
+           where T : Visual
         {
             // Confirm parent and childName are valid. 
             if (parent == null) return default(T);
@@ -99,12 +99,12 @@ namespace AvaloniaForms
 
         public static object GetChild(AvaloniaObject element, int i)
         {
-            return GetChildObjects(element as IVisual)?.Skip(i).Take(1);
+            return GetChildObjects(element as Visual)?.Skip(i).Take(1);
         }
 
         public static int GetChildrenCount(AvaloniaObject element)
         {
-            return GetVisualChildren(element as IVisual)?.Count ?? 0;
+            return GetVisualChildren(element as Visual)?.Count ?? 0;
         }
 
         /// <summary>
@@ -116,31 +116,28 @@ namespace AvaloniaForms
         /// <param name="child">The item to be processed.</param>
         /// <returns>The submitted item's parent, if available. Otherwise
         /// null.</returns>
-        public static IVisual GetParentObject(this IVisual child)
+        public static Visual GetParentObject(this Visual child)
         {
             if (child == null) return null;
 
             //handle content elements separately
-            var contentElement = child as ContentControl;
-            if (contentElement != null)
+            if (child is ContentControl contentElement)
             {
                 var parent = contentElement.Parent;
-                if (parent != null) return parent;
+                if (parent != null) return (Visual)parent;
 
-                var fce = contentElement as Control;
-                return fce != null ? fce.Parent : null;
+                return contentElement is Control fce ? (Visual)fce.Parent : null;
             }
 
             //also try searching for parent in framework elements (such as DockPanel, etc)
-            var control = child as Control;
-            if (control != null)
+            if (child is Control control)
             {
                 var parent = control.Parent;
-                if (parent != null) return parent;
+                if (parent != null) return (Visual) parent;
             }
 
             //if it's not a ContentElement/FrameworkElement, rely on VisualTreeHelper
-            return child.VisualParent;
+            return (Visual)child.Parent; // was .VisualParent
         }
 
         /// <summary>
@@ -152,7 +149,7 @@ namespace AvaloniaForms
         /// source is already of the requested type, it will not be included in the result.</param>
         /// <param name="forceUsingTheVisualTreeHelper">Sometimes it's better to search in the VisualTree (e.g. in tests)</param>
         /// <returns>All descendants of <paramref name="source"/> that match the requested type.</returns>
-        public static IEnumerable<T> FindChildren<T>(this IVisual source, bool forceUsingTheVisualTreeHelper = false) where T : IVisual
+        public static IEnumerable<T> FindChildren<T>(this Visual source, bool forceUsingTheVisualTreeHelper = false) where T : Visual
         {
             if (source != null)
             {
@@ -160,9 +157,9 @@ namespace AvaloniaForms
                 foreach (var child in childs)
                 {
                     //analyze if children match the requested type
-                    if (child != null && child is T)
+                    if (child is T valid)
                     {
-                        yield return (T)child;
+                        yield return valid;
                     }
 
                     //recurse tree
@@ -183,17 +180,16 @@ namespace AvaloniaForms
         /// <param name="parent">The item to be processed.</param>
         /// <param name="forceUsingTheVisualTreeHelper">Sometimes it's better to search in the VisualTree (e.g. in tests)</param>
         /// <returns>The submitted item's child elements, if available.</returns>
-        public static IEnumerable<IVisual> GetChildObjects(this IVisual parent, bool forceUsingTheVisualTreeHelper = false)
+        public static IEnumerable<Visual> GetChildObjects(this Visual parent, bool forceUsingTheVisualTreeHelper = false)
         {
             if (parent == null) yield break;
 
             if (!forceUsingTheVisualTreeHelper && (parent is ContentControl || parent is Control))
             {
                 //use the logical tree for content / framework elements
-                foreach (object obj in GetVisualChildren(parent))
+                foreach (Visual obj in GetVisualChildren(parent))
                 {
-                    var depObj = obj as Visual;
-                    if (depObj != null) yield return (Visual)obj;
+                    if (obj != null) yield return obj;
                 }
             }
             else
@@ -216,21 +212,21 @@ namespace AvaloniaForms
         /// <param name="reference">The main element which is used to perform
         /// hit testing.</param>
         /// <param name="point">The position to be evaluated on the origin.</param>
-        public static T TryFindFromPoint<T>(InputElement reference, Point point) where T : class, IVisual
+        public static T TryFindFromPoint<T>(InputElement reference, Point point) where T : Visual
         {
             var element = reference.InputHitTest(point);
             if (element == null)
             {
                 return null;
             }
-            if (element is T)
+            if (element is T valid)
             {
-                return (T)element;
+                return valid;
             }
-            return TryFindParent<T>(element);
+            return TryFindParent<T>((Visual)element); // It didn't like this very much
         }
 
-        public static IEnumerable<T> FindVisualChildren<T>(this IVisual parent) where T : IVisual
+        public static IEnumerable<T> FindVisualChildren<T>(this Visual parent) where T : Visual
         {
             var visualChildren = GetVisualChildren(parent);
             for (int i = 0; i < visualChildren.Count; i++)
@@ -238,7 +234,7 @@ namespace AvaloniaForms
                 var child = visualChildren[i];
                 if (child is T childType)
                 {
-                    yield return (T)child;
+                    yield return childType;
                 }
 
                 foreach (var other in FindVisualChildren<T>(child))
@@ -248,7 +244,7 @@ namespace AvaloniaForms
             }
         }
 
-        public static T FindVisualChild<T>(this IVisual parent) where T : class, IVisual
+        public static T FindVisualChild<T>(this Visual parent) where T : Visual
         {
             var child = default(T);
 

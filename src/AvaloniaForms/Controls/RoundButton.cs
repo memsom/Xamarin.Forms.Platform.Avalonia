@@ -12,26 +12,12 @@ namespace AvaloniaForms.Controls
 {
     public class RoundButton : Button, IStyleable
     {
-		public static readonly StyledProperty<int> CornerRadiusProperty = AvaloniaProperty.Register<RoundButton, int>(nameof(CornerRadius));
-
 		static RoundButton()
 		{
 			CornerRadiusProperty.Changed.AddClassHandler<RoundButton>((x, e) => x.OnCornerRadiusPropertyChanged(e));
 		}
 
 		Type IStyleable.StyleKey => typeof(Button);
-
-		public int CornerRadius
-		{
-			get
-			{
-				return (int)GetValue(CornerRadiusProperty);
-			}
-			set
-			{
-				SetValue(CornerRadiusProperty, value);
-			}
-		}
 		
 		ContentPresenter _contentPresenter;
 
@@ -51,7 +37,11 @@ namespace AvaloniaForms.Controls
 		{
 			if (_contentPresenter != null)
 			{
-				_contentPresenter.CornerRadius = new CornerRadius(CornerRadius);
+				_contentPresenter.CornerRadius = new CornerRadius(
+					CornerRadius.TopLeft,
+					CornerRadius.TopRight,
+					CornerRadius.BottomRight,
+					CornerRadius.BottomLeft);
 			}
 		}
 	}

@@ -140,12 +140,12 @@ namespace AvaloniaForms
             }
         }
 
-        public static TopLevel GetParentWindow(this IControl control)
+        public static TopLevel GetParentWindow(this Control control)
         {
             var topLevel = control;
-            while(topLevel != null && !(topLevel is TopLevel))
+            while(topLevel != null && topLevel is not TopLevel)
             {
-                topLevel = topLevel.Parent;
+                topLevel = (Control)topLevel.Parent;
             }
             return topLevel as TopLevel;
         }

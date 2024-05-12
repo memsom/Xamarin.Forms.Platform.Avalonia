@@ -6,7 +6,6 @@ using Avalonia.Styling;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using AvaloniaForms.Controls.Generators;
 
 namespace AvaloniaForms.Controls
 {
@@ -30,9 +29,9 @@ namespace AvaloniaForms.Controls
         {
         }
 
-        protected override IItemContainerGenerator CreateItemContainerGenerator()
-        {
-            return new ListViewItemContainerGenerator<ListViewItem>(this, ListViewItem.ContentProperty, ListViewItem.ContentTemplateProperty, ListView.ItemTemplateSelectorProperty);
-        }
+        // protected override ItemContainerGenerator CreateItemContainerGenerator()
+        // {
+        //     return new ListViewItemContainerGenerator<ListViewItem>(this, ListViewItem.ContentProperty, ListViewItem.ContentTemplateProperty, ListView.ItemTemplateSelectorProperty);
+        // }
     }
 }
