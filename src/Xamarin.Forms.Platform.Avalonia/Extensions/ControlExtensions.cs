@@ -24,7 +24,7 @@ namespace Xamarin.Forms.Platform.Avalonia
             return default(T);
         }
 
-        public static T Find<T>(this Control control, string name, TemplateAppliedEventArgs e = null) where T : class, IControl
+        public static T Find<T>(this Control control, string name, TemplateAppliedEventArgs e = null) where T : Control
         {
             if (e != null)
             {

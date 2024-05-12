@@ -18,9 +18,11 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="0.9.2" />
-    <PackageReference Include="Avalonia.Desktop" Version="0.9.2" />
-    <PackageReference Include="ReactiveUI" Version="11.1.23" />
+    <PackageReference Include="Avalonia" Version="11.0.10" />
+    <PackageReference Include="Avalonia.Controls.ItemsRepeater" Version="11.0.10" />
+    <PackageReference Include="Avalonia.Themes.Simple" Version="11.0.10" />
+    <PackageReference Include="System.Reactive" Version="6.0.0" />
+    <PackageReference Include="ReactiveUI" Version="20.0.1" />
     <PackageReference Include="Xamarin.Forms" Version="4.5.0.266-pre3" />
   </ItemGroup>
   

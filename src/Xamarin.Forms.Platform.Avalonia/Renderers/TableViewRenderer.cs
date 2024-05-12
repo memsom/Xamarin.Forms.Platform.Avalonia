@@ -59,7 +59,13 @@ namespace Xamarin.Forms.Platform.Avalonia
 				}
 
 				// Update control property 
-				Control.Items = GetTableViewRow();
+				//Control.Items = GetTableViewRow();
+				Control.Items.Clear();
+				var items = GetTableViewRow();
+				foreach (var item in items)
+				{
+					Control.Items.Add(item);
+				}
 
 				// Element event
 				Element.ModelChanged += OnModelChanged;
@@ -87,7 +93,13 @@ namespace Xamarin.Forms.Platform.Avalonia
 
 		void OnModelChanged(object sender, EventArgs eventArgs)
 		{
-			Control.Items = GetTableViewRow();
+			//Control.Items = GetTableViewRow();
+			var items = GetTableViewRow();
+			Control.Items.Clear();
+			foreach (var item in items)
+			{
+				Control.Items.Add(item);
+			}
 		}
 
 		public IList<object> GetTableViewRow()

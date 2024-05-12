@@ -190,7 +190,7 @@ namespace Xamarin.Forms.Platform.Avalonia
 				Control.Arrange(myRect);
 			}
 
-			List<IControl> arrangedChildren = null;
+			List<Control> arrangedChildren = null;
 			for (var i = 0; i < ElementController.LogicalChildren.Count; i++)
 			{
 				var child = ElementController.LogicalChildren[i] as VisualElement;
@@ -206,7 +206,7 @@ namespace Xamarin.Forms.Platform.Avalonia
 				if (ArrangeNativeChildren)
 				{
 					if (arrangedChildren == null)
-						arrangedChildren = new List<IControl>();
+						arrangedChildren = new List<Control>();
 					arrangedChildren.Add(renderer.ContainerElement);
 				}
 			}

@@ -27,9 +27,9 @@ namespace Xamarin.Forms.Platform.Avalonia.Controls
             this.PreviousCommand = ReactiveCommand.Create(this.OnPreviousExecuted, this.OnPreviousCanExecute());
         }
 
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
 
             this._nextButton = e.NameScope.Find<RepeatButton>("PART_NextButton");
             this._nextButton.Click += _nextButton_Click;

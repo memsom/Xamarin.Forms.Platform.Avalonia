@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AvaloniaForms.Controls
 {
-    public partial class DatePicker : Avalonia.Controls.DatePicker
+    public partial class DatePicker : Avalonia.Controls.CalendarDatePicker
     {
     }
 }

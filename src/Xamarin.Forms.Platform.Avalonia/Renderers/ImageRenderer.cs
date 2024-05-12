@@ -198,7 +198,7 @@ namespace Xamarin.Forms.Platform.Avalonia
             {
                 return null;
             }
-            var typeface = new Typeface(fontFamily, fontSize, fontStyle, fontWeight);
+            //var typeface = new Typeface(fontFamily, fontSize, fontStyle, fontWeight);
             //if (!typeface.TryGetGlyphTypeface(out GlyphTypeface glyphTypeface))
             //{
             //    //if it does not work 

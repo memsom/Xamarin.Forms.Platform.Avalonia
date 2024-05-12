@@ -25,7 +25,14 @@ namespace Xamarin.Forms.Platform.Avalonia
 				UpdateTitle();
 				UpdateSelectedIndex();
 				UpdateTextColor();
-				Control.Items = ((LockableObservableListWrapper)Element.Items)._list;
+
+				//Control.Items = ((LockableObservableListWrapper)Element.Items)._list;
+				Control.Items.Clear();
+				foreach (var item in Element.Items)
+				{
+					Control.Items.Add(item);
+				}
+
 			}
 
 			base.OnElementChanged(e);
@@ -86,7 +93,7 @@ namespace Xamarin.Forms.Platform.Avalonia
 				if (Control != null)
 				{
 					Control.SelectionChanged -= OnControlSelectionChanged;
-					Control.Items = null;
+					Control.Items?.Clear();
 				}
 
 				if (Element != null)

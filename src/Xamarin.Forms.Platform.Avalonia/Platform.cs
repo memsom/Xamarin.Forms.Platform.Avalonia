@@ -102,8 +102,12 @@ namespace Xamarin.Forms.Platform.Avalonia
 			var list = new global::Avalonia.Controls.ListBox
 			{
 				//Style = (System.Windows.Style)System.Windows.Application.Current.Resources["ActionSheetList"],
-				Items = options.Buttons
 			};
+
+			foreach (var item in options.Buttons)
+			{
+				list.Items.Add(item);
+			}
 
 			var dialog = new FormsContentDialog
 			{

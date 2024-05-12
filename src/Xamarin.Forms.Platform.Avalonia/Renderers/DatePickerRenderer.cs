@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Avalonia.Controls;
 
 namespace Xamarin.Forms.Platform.Avalonia
 {
@@ -16,7 +17,7 @@ namespace Xamarin.Forms.Platform.Avalonia
 				if (Control == null) // construct and SetNativeControl and suscribe control event
 				{
 					SetNativeControl(new AvaloniaForms.Controls.DatePicker());
-					Control.SelectedDateChanged += OnNativeSelectedDateChanged;
+					Control.SelectedDateChanged += OnNativeSelectedDateChanged; //+= OnNativeSelectedDateChanged;
 				}
 
 				// Update control property 
@@ -63,7 +64,7 @@ namespace Xamarin.Forms.Platform.Avalonia
 			Control.UpdateDependencyColor(AvaloniaForms.Controls.DatePicker.ForegroundProperty, Element.TextColor);
 		}
 
-		void OnNativeSelectedDateChanged(object sender, global::Avalonia.Controls.SelectionChangedEventArgs e)
+		private void OnNativeSelectedDateChanged(object sender, global::Avalonia.Controls.SelectionChangedEventArgs e)
 		{
 			if (Control.SelectedDate.HasValue)
 			{

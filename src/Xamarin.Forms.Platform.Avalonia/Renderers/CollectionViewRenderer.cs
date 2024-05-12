@@ -33,7 +33,8 @@ namespace Xamarin.Forms.Platform.Avalonia
 
 		void UpdateItemSource()
 		{
-            Control.Items = Element.ItemsSource;
-		}
+            //Control.Items = Element.ItemsSource;
+            Control.ItemsSource = Element.ItemsSource;  // this is probably wrong
+        }
 	}
 }

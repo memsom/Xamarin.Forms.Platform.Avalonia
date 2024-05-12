@@ -158,7 +158,12 @@ namespace Xamarin.Forms.Platform.Avalonia
 					index++;
 				}
 
-				Control.Items = items;
+				//Control.Items = items;
+				Control.Items.Clear();
+				foreach (var item in items)
+				{
+					Control.Items.Add(item);
+				}
 			}
 			else
 			{
@@ -167,7 +172,12 @@ namespace Xamarin.Forms.Platform.Avalonia
 					items.Add(item);
 				}
 
-				Control.Items = items;
+				//Control.Items = items;
+				Control.Items.Clear();
+				foreach (var item in items)
+				{
+					Control.Items.Add(item);
+				}
 			}
 		}
 

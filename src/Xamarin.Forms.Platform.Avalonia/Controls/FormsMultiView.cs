@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using TransitioningContentControl = AvaloniaForms.Controls.TransitioningContentControl;
 
 namespace Xamarin.Forms.Platform.Avalonia.Controls
 {
@@ -88,9 +89,9 @@ namespace Xamarin.Forms.Platform.Avalonia.Controls
         {
         }
 
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
 
             ContentControl = e.NameScope.Find<TransitioningContentControl>("PART_Multi_Content");
         }
